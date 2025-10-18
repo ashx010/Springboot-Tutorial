@@ -11,7 +11,20 @@ public class Student {
 
     private String name;
     private int age;
+
+
+    public Student() {
+        this.name = "";
+        this.age = 0;
+    }
+
     public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public Student(int id, String name, int age) {
+        this.id = id;
         this.name = name;
         this.age = age;
     }
