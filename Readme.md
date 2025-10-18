@@ -1,49 +1,72 @@
-# ☕ Java SpringBoot Tutorial
+# ☕ Java 
 
 ---
-
 ### 🔹 JDBC
 
-- Load Driver using `Class.forName()`
-- Get Connection using `DriverManager.getConnection()`
+- **Load Driver**
+    - `Class.forName("org.postgresql.Driver")`
+
+- **Get Connection**
+    - `DriverManager.getConnection(url, username, password)`
     - Parameters:
         - URL → `jdbc:postgresql://localhost:5432/dbName`
         - Username
         - Password
-- Create Statement
+
+- **Create Statement**
     - `Statement` → for static SQL
-    - `PreparedStatement` → for parameterized SQL
-- Execute Query / Update
+    - `PreparedStatement` → for parameterized SQL (`?` placeholders)
+
+- **Execute SQL**
     - `executeQuery()` → for `SELECT`
     - `executeUpdate()` → for `INSERT`, `UPDATE`, `DELETE`
-- Process Result
+
+- **Process Results**
     - Use `ResultSet`
-    - Retrieve data with `getInt()`, `getString()`, etc.
-- Close Resources
-    - `ResultSet`, `Statement`, `Connection`
+    - Access columns → `rs.getInt()`, `rs.getString()`, etc.
+
+- **Close Resources**
+    - Always close `ResultSet`, `Statement`, and `Connection`
 
 ---
 
 ### 🔹 Hibernate
 
-- Load Configuration using `new Configuration().configure()`
-- Add Annotated Classes with `addAnnotatedClass()`
-- Build `SessionFactory` using `buildSessionFactory()`
-- Open `Session` using `openSession()`
-- Begin Transaction using `beginTransaction()`
-- Perform Operation
+#### 🧱 Basic Workflow
+
+- **Load Configuration**
+    - `Configuration cfg = new Configuration().configure("hibernate.cfg.xml");`
+    - Add entity class → `.addAnnotatedClass(Student.class)`
+
+- **Build SessionFactory**
+    - `SessionFactory sf = cfg.buildSessionFactory();`
+    - ⚠️ Heavy object → create only **once** per application.
+
+- **Open Session**
+    - `Session s = sf.openSession();`
+
+- **Transaction Handling**
+    - Always use transactions for **insert, update, delete**
+    - Fetch (`find`) does not require a transaction.
+
+- **Operations**
     - `persist()` → Insert
     - `find()` → Fetch by ID
     - `merge()` → Update
     - `remove()` → Delete
-- Commit Transaction with `commit()`
-- Close Session and `SessionFactory`
-- Entity Mapping:
-    - `@Entity`
-    - `@Id`
-    - `@GeneratedValue(strategy = GenerationType.IDENTITY)`
+
+- **Commit Transaction** 
+    - `commit()`
+  
+- **Close Session and `SessionFactory`**
+
+- **Entity Mapping:**
+    - `@Entity` → Marks class as a table
+    - `@Id` → Marks primary key
+    - `@GeneratedValue(strategy = GenerationType.IDENTITY)` → Auto-increment ID
 
 ---
 
 ### 🧾 Author
+
 **Yash Aggarwal**
