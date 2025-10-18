@@ -9,8 +9,10 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-//        Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-//        cfg.addAnnotatedClass(in.mryash.Student.class);
+/*
+        Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+        cfg.addAnnotatedClass(in.mryash.Student.class);
+*/
 
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(in.mryash.Student.class)
@@ -32,7 +34,7 @@ public class Main {
                 String name = sc.nextLine();
                 int age = sc.nextInt();
                 Student st = new Student(name, age);
-                System.out.println(st.toString());
+                System.out.println(st);
 
                 Session s = sf.openSession();
 
@@ -40,6 +42,7 @@ public class Main {
                 s.persist(st);
                 tx.commit();
                 s.close();
+                break;
             }
             case 2:{
 
@@ -53,6 +56,8 @@ public class Main {
                 s.close();
 
                 System.out.println(st.toString());
+                break;
+
 
             }
 
@@ -67,13 +72,14 @@ public class Main {
                 int age = sc.nextInt();
 
                 Student st = new Student(s_id, name, age);
-                System.out.println(st.toString());
+                System.out.println(st);
 
                 Session s = sf.openSession();
                 Transaction tx = s.beginTransaction();
                 s.merge(st);
                 tx.commit();
                 s.close();
+                break;
 
             }
 
@@ -83,8 +89,6 @@ public class Main {
 
                 System.out.println("Enter the id: ");
                 int s_id = sc.nextInt();
-
-                Student s1 = new Student();
 
                 Session s = sf.openSession();
 
@@ -96,6 +100,14 @@ public class Main {
 
                 tx.commit();
                 s.close();
+                break;
+
+            }
+
+            case 5:{
+
+                //exit switch
+                break;
             }
         }
 
