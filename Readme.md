@@ -1,72 +1,71 @@
-# ☕ Java 
+# ☕ Java Quick Reference
 
----
-### 🔹 JDBC
-
-- **Load Driver**
-    - `Class.forName("org.postgresql.Driver")`
-
-- **Get Connection**
-    - `DriverManager.getConnection(url, username, password)`
-    - Parameters:
-        - URL → `jdbc:postgresql://localhost:5432/dbName`
-        - Username
-        - Password
-
-- **Create Statement**
-    - `Statement` → for static SQL
-    - `PreparedStatement` → for parameterized SQL (`?` placeholders)
-
-- **Execute SQL**
-    - `executeQuery()` → for `SELECT`
-    - `executeUpdate()` → for `INSERT`, `UPDATE`, `DELETE`
-
-- **Process Results**
-    - Use `ResultSet`
-    - Access columns → `rs.getInt()`, `rs.getString()`, etc.
-
-- **Close Resources**
-    - Always close `ResultSet`, `Statement`, and `Connection`
+> **Author:** Yash Aggarwal
 
 ---
 
-### 🔹 Hibernate
+## 🔹 JDBC
 
-#### 🧱 Basic Workflow
+| Function | Purpose |
+|----------|---------|
+| `Class.forName()` | Load database driver |
+| `DriverManager.getConnection()` | Connect to database |
+| `createStatement()` | Static SQL queries |
+| `prepareStatement()` | Parameterized queries with `?` |
+| `executeQuery()` | Run SELECT → returns data |
+| `executeUpdate()` | Run INSERT/UPDATE/DELETE → returns count |
+| `ResultSet.next()` | Move to next row |
+| `ResultSet.getInt()` / `getString()` | Extract column values |
+| `close()` | Release resources |
 
-- **Load Configuration**
-    - `Configuration cfg = new Configuration().configure("hibernate.cfg.xml");`
-    - Add entity class → `.addAnnotatedClass(Student.class)`
-
-- **Build SessionFactory**
-    - `SessionFactory sf = cfg.buildSessionFactory();`
-    - ⚠️ Heavy object → create only **once** per application.
-
-- **Open Session**
-    - `Session s = sf.openSession();`
-
-- **Transaction Handling**
-    - Always use transactions for **insert, update, delete**
-    - Fetch (`find`) does not require a transaction.
-
-- **Operations**
-    - `persist()` → Insert
-    - `find()` → Fetch by ID
-    - `merge()` → Update
-    - `remove()` → Delete
-
-- **Commit Transaction** 
-    - `commit()`
-  
-- **Close Session and `SessionFactory`**
-
-- **Entity Mapping:**
-    - `@Entity` → Marks class as a table
-    - `@Id` → Marks primary key
-    - `@GeneratedValue(strategy = GenerationType.IDENTITY)` → Auto-increment ID
+**Flow:** Load Driver → Connect → Create Statement → Execute → Process Results → Close
 
 ---
 
-### 🧾 Author
+## 🔹 Hibernate
 
-**Yash Aggarwal**
+### Core Functions
+
+| Function | Purpose |
+|----------|---------|
+| `new Configuration()` | Initialize Hibernate settings |
+| `configure()` | Load config file |
+| `addAnnotatedClass()` | Register entity class |
+| `buildSessionFactory()` | Create factory (once per app) |
+| `openSession()` | Start database session |
+| `beginTransaction()` | Start transaction for writes |
+| `persist()` | Insert new record |
+| `find()` | Fetch by primary key |
+| `merge()` | Update existing record |
+| `remove()` | Delete record |
+| `commit()` | Save changes |
+| `close()` | Close session/factory |
+
+**Flow:** Configure → Build Factory → Open Session → Transaction → CRUD → Commit → Close
+
+### Annotations
+
+| Annotation | Purpose |
+|------------|---------|
+| `@Entity` | Mark class as database entity |
+| `@Entity(name)` | Custom name for JPQL queries |
+| `@Table(name)` | Map to specific table name |
+| `@Id` | Mark primary key field |
+| `@GeneratedValue` | Auto-increment ID |
+| `@Column(name)` | Map field to specific column name |
+| `@Transient` | Exclude field from database |
+
+---
+
+## 💡 Key Notes
+
+- **SessionFactory** = Create once per app
+- **Transaction** = Required for write, optional for read
+- **Default mapping** = Class name → Table name, Field name → Column name
+- Use `@Table(name)` when DB table ≠ class name
+- Use `@Column(name)` when DB column ≠ field name
+- Use `@Transient` for temporary/calculated fields
+
+---
+
+**Happy Coding! 🚀**

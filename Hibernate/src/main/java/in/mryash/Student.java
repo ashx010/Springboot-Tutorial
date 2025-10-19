@@ -2,15 +2,23 @@ package in.mryash;
 
 import jakarta.persistence.*;
 
-@Entity
+@Entity(name="student_in_java")
+@Table(name="student")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name="Name")
     private String name;
+
+    @Column(name="Age")
     private int age;
+
+    //do not use as column from table
+    @Transient
+    private String temp;
 
 
     public Student() {
