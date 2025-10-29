@@ -80,11 +80,11 @@
 | `mappedBy` | Specifies inverse side of relationship | `mappedBy="department"` |
 | `cascade` | Propagate changes across related entities | `cascade=CascadeType.ALL` |
 | `fetch` | Load strategy (`LAZY` / `EAGER`) | `fetch=FetchType.LAZY` |
-| **L1 Cache** | Session-level cache (default) | Auto-enabled |
-| **L2 Cache** | Factory-level shared cache | Needs setup (Ehcache, etc.) |
-| **Query Cache** | Caches query results | `query.setCacheable(true)` |
-| **Lazy Fetch** | Loads data only when accessed | Default for OneToMany |
-| **Eager Fetch** | Loads data immediately | Default for ManyToOne |
+| L1 Cache | Session-level cache (default) | Auto-enabled |
+| L2 Cache | Factory-level shared cache | Needs setup (Ehcache, etc.) |
+| Query Cache | Caches query results | `query.setCacheable(true)` |
+| Lazy Fetch | Loads data only when accessed | Default for OneToMany |
+| Eager Fetch | Loads data immediately | Default for ManyToOne |
 
 ---
 
