@@ -68,4 +68,24 @@
 
 ---
 
+### Quick Reference — Hibernate Essentials
+
+| Concept | Purpose | Example |
+|----------|----------|----------|
+| `@OneToOne` | One-to-one relationship | User → Profile |
+| `@OneToMany` / `@ManyToOne` | One to many / many to one relationship | Dept → Employees |
+| `@ManyToMany` | Many-to-many relationship | Students ↔ Courses |
+| `@JoinColumn` | Defines foreign key column | `@JoinColumn(name="dept_id")` |
+| `@JoinTable` | Defines custom join table | For `@ManyToMany` |
+| `mappedBy` | Specifies inverse side of relationship | `mappedBy="department"` |
+| `cascade` | Propagate changes across related entities | `cascade=CascadeType.ALL` |
+| `fetch` | Load strategy (`LAZY` / `EAGER`) | `fetch=FetchType.LAZY` |
+| **L1 Cache** | Session-level cache (default) | Auto-enabled |
+| **L2 Cache** | Factory-level shared cache | Needs setup (Ehcache, etc.) |
+| **Query Cache** | Caches query results | `query.setCacheable(true)` |
+| **Lazy Fetch** | Loads data only when accessed | Default for OneToMany |
+| **Eager Fetch** | Loads data immediately | Default for ManyToOne |
+
+---
+
 **Happy Coding! 🚀**
